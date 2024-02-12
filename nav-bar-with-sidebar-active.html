@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Top Navigation Bar */
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+            border-top-left-radius: 25%;
+            border-bottom-right-radius: 25%;
+            border: rgb(15, 247, 15) 3px solid;
+        }
+
+        .topnav a:hover {
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border: rgb(15, 89, 247) 3px solid;
+        }
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+            border-top-left-radius: 20%;
+            border-bottom-right-radius: 20%;
+            border: rgb(15, 89, 247) 3px solid;
+        }
+
+        .sidebar a.active {
+            background-color: #8ca2e5;
+            color: white;
+            border-top-left-radius: 20%;
+            border-bottom-right-radius: 20%;
+            border: rgb(15, 89, 247) 3px solid;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 250px;
+            padding: 3rem 1rem 1rem 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <div class="topnav">
+        <a href="#" onclick="makeActive(this)">Home</a>
+        <a href="#" onclick="makeActive(this)">About</a>
+        <a href="#" onclick="makeActive(this)">Contact</a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" onclick="makeSidebarActive(event)">Link 1</a>
+        <a href="#" onclick="makeSidebarActive(event)">Link 2</a>
+        <a href="#" onclick="makeSidebarActive(event)">Link 3</a>
+        <a href="#" onclick="makeSidebarActive(event)">Link 4</a>
+        <a href="#" onclick="makeSidebarActive(event)">Link 5</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Your page content goes here -->
+        <h2>Main Content Area</h2>
+        <p>This is your main content.</p>
+    </div>
+
+    <!-- Modify this script block in your existing code -->
+    <script>
+      function makeActive(element) {
+          // Remove active class from all top nav links
+          var topNavLinks = document.querySelectorAll('.topnav a');
+          topNavLinks.forEach(function(link) {
+              link.classList.remove('active');
+          });
+
+          // Add active class to the clicked top nav link
+          element.classList.add('active');
+
+          // Set the first sidebar item active
+          setFirstSidebarItemActive();
+      }
+
+      function makeSidebarActive(event) {
+          // Remove active class from all sidebar links
+          var sidebarLinks = document.querySelectorAll('.sidebar a');
+          sidebarLinks.forEach(function(link) {
+              link.classList.remove('active');
+          });
+
+          // Add active class to the clicked sidebar link
+          event.currentTarget.classList.add('active');
+      }
+
+      // Function to set the first sidebar item active
+      function setFirstSidebarItemActive() {
+          // Remove active class from all sidebar links
+          var sidebarLinks = document.querySelectorAll('.sidebar a');
+          sidebarLinks.forEach(function(link) {
+              link.classList.remove('active');
+          });
+
+          // Add active class to the first sidebar item
+          var firstSidebarItem = document.querySelector('.sidebar a:first-child');
+          firstSidebarItem.classList.add('active');
+      }
+
+      // Invoke the function to set the first sidebar item active initially
+      setFirstSidebarItemActive();
+
+      // Add active class to the first top nav item initially
+      var firstTopNavItem = document.querySelector('.topnav a:first-child');
+      firstTopNavItem.classList.add('active');
+    </script>
+
+
+
+</body>
+</html>
