@@ -90,19 +90,19 @@
 
     <!-- Top Navigation Bar -->
     <div class="topnav">
-        <a href="#" onclick="makeActive(this)">Home</a>
-        <a href="#" onclick="makeActive(this)">About</a>
-        <a href="#" onclick="makeActive(this)">Contact</a>
-    </div>
+      <a href="#" onclick="makeActive(this)">Home</a>
+      <a href="#" onclick="makeActive(this)">About</a>
+      <a href="#" onclick="makeActive(this)">Contact</a>
+  </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <a href="#" onclick="makeSidebarActive(event)">Link 1</a>
-        <a href="#" onclick="makeSidebarActive(event)">Link 2</a>
-        <a href="#" onclick="makeSidebarActive(event)">Link 3</a>
-        <a href="#" onclick="makeSidebarActive(event)">Link 4</a>
-        <a href="#" onclick="makeSidebarActive(event)">Link 5</a>
-    </div>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+      <a href="#" onclick="makeSidebarActive(event)">Link 1</a>
+      <a href="#" onclick="makeSidebarActive(event)">Link 2</a>
+      <a href="#" onclick="makeSidebarActive(event)">Link 3</a>
+      <a href="#" onclick="makeSidebarActive(event)">Link 4</a>
+      <a href="#" onclick="makeSidebarActive(event)">Link 5</a>
+  </div>
 
     <!-- Content -->
     <div class="content">
@@ -157,6 +157,133 @@
       // Add active class to the first top nav item initially
       var firstTopNavItem = document.querySelector('.topnav a:first-child');
       firstTopNavItem.classList.add('active');
+
+
+      /*
+      The below commented code was implemented for web application
+      and the page got refreshed on each clicked. so to keep track 
+      of the menu clicked, the implementation used sessionStorage.
+      
+      <!-- Top Navigation Bar -->
+      <div class="topnav">
+          <a href="#" data-id="home">Home</a>
+          <a href="#" data-id="about">About</a>
+          <a href="#" data-id="contact">Contact</a>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+          <a href="#" data-id="link1">Link 1</a>
+          <a href="#" data-id="link2">Link 2</a>
+          <a href="#" data-id="link3">Link 3</a>
+          <a href="#" data-id="link4">Link 4</a>
+          <a href="#" data-id="link5">Link 5</a>
+      </div>
+
+      */
+
+      /*
+      // this needs to be invoked before logout.
+      function clearSessionStorage() {
+        sessionStorage.clear();
+      }
+
+      function addItem(key, value) {
+        sessionStorage.setItem(key, value);
+      }
+
+      function getItem(key) {
+        return sessionStorage.getItem(key) || '';
+      }
+
+      function removeActive(selector, clazz) {
+        document.querySelectorAll(selector).forEach(link => link.classList.remove(clazz));
+      }
+
+      // this is for URL based active on menu incase URL is accessed directly
+      function defaultActiveTopNavFromUrl() {
+        const url_default_active_nav = {
+          'home': 'home',
+          'about': 'about'
+        }
+
+        for (let [key, value] of Object.entries(url_default_active_nav)) {
+          if (window.location.href.indexOf(key) > -1) {
+            return value;
+          }
+        }
+
+        return '';
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const intitialSetupDone = getItem('initialSetupDone');
+
+        if (intitialSetupDone !== 'true') {
+          addItem('initialSetupDone', true);
+        }
+
+        const activeSidebar = getItem('activeSidebar') || 'link1';
+        const activeTopNav = defaultActiveTopNavFromUrl() || getItem('activeTopNav');
+
+        const selector_class_map = {
+          topNav: {
+            'selector': '.topnav a',
+            'class': 'active',
+            'activeLink': activeTopNav
+          },
+          sideNav: {
+            'selector': '.sidebar a',
+            'class': 'active',
+            'activeLink': activeSidebar
+          }
+        };
+
+        for (let [name, prop] of Object.entries(selector_class_map)) {
+          if (prop['activeLink']) {
+            document.querySelectorAll(prop['selector']).forEach(item => {
+              if (item.dataset.id === prop['activeLink']) {
+                item.classList.add(prop['class']);
+
+                if (name === 'topNav') {
+                  item.setAttribute('aria-current', 'page');
+                }
+              } else {
+                item.classList.remove(prop['class']);
+
+                if (name === 'topNav') {
+                  item.removeAttribute('aria-current');
+                }
+              }
+            })
+          }
+        }
+
+        function handleNavigationClick(event) {
+          const target = event.target;
+
+          for (let [name, prop] of Object.entries(selector_class_map)) {
+            if (target.matches(prop['selector'])) {
+              removeActive(prop['selector'], prop['class']);
+
+              target.classList.add(prop['class']);
+
+              if (name === 'topNav') {
+                target.setAttribute('aria-current', 'page');
+
+                addItem('activeSidebar', 'home');
+                addItem('activeTopNav', target.dataset.id);
+              } else {
+                addItem('activeSidebar', target.dataset.id);
+              }
+            }
+          }
+        }
+
+        document.addEventListener('click', handleNavigationClick);
+      });
+
+      */
     </script>
 
 
